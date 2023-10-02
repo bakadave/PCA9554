@@ -12,14 +12,10 @@
     [
       {
         "name": "David Baka",
-        "url": "https://www.john-smith/contact"
+        "url": "https://github.com/bakadave/PCA9554.git"
       }
     ],
     "license": "MIT",
-    "homepage": "https://www.helloworld.org/",
-    "dependencies": {
-      "ownername/print": "~1.3.0"
-    },
     "frameworks": "arduino",
     "platforms": "*"
   }
