@@ -169,7 +169,7 @@ pca9554_return_t PCA9554::readRegister(pca9554_reg_t reg, pca9554_data_t* value)
 
     delay(2);
 
-    wire->requestFrom(slaveAddress, 1, true);
+    wire->requestFrom(slaveAddress, 1, (int)true);
     wire->readBytes(value, 1);
 
     return (pca9554_return_t)ret;
