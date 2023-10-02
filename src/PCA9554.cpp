@@ -2,7 +2,7 @@
  * @file PCA9554.cpp
  * @author David Baka
  * @brief
- * @version 0.1
+ * @version 0.3.1
  * @date 2023-10-02
  *  
  * @copyright Copyright (c) 2023 David Baka
@@ -21,7 +21,7 @@ pca9554_return_t PCA9554::configSinglePort(bool mode, pca9554_port_num_t port) {
     pca9554_return_t ret;
 
     ret = readRegister(CONFIG_REG, &configReg);
-    if(ret != I2C_SUCCESS)
+    if(ret != PCA9554_I2C_SUCCESS)
         return ret;
 
     configReg &= ~(1 << port);     // clear bit
@@ -37,7 +37,7 @@ pca9554_return_t PCA9554::configMultiplePorts(bool mode, pca9554_mask_t mask) {
     pca9554_return_t ret;
 
     ret = readRegister(CONFIG_REG, &configReg);
-    if(ret != I2C_SUCCESS)
+    if(ret != PCA9554_I2C_SUCCESS)
         return ret;
 
     pca9554_data_t val = mode?0xFF:0x00;   // fill a byte with the value of output mode
@@ -58,7 +58,7 @@ pca9554_return_t PCA9554::invertSinglePort(bool inverted, pca9554_port_num_t por
     pca9554_return_t ret;
 
     ret = readRegister(POL_INV_REG, &inversionReg);
-    if(ret != I2C_SUCCESS)
+    if(ret != PCA9554_I2C_SUCCESS)
         return ret;
 
     inversionReg &= ~(1 << port);
@@ -74,7 +74,7 @@ pca9554_return_t PCA9554::invertMultiplePorts(bool inverted, pca9554_mask_t mask
     pca9554_return_t ret;
 
     ret = readRegister(POL_INV_REG, &inversionReg);
-    if(ret != I2C_SUCCESS)
+    if(ret != PCA9554_I2C_SUCCESS)
         return ret;
 
     pca9554_data_t val = inverted?0xFF:0x00;
@@ -103,7 +103,7 @@ pca9554_return_t PCA9554::writeSinglePort(bool level, pca9554_port_num_t port) {
     pca9554_return_t ret;
 
     ret = readRegister(OUTPUT_REG, &outputReg);
-    if(ret != I2C_SUCCESS)
+    if(ret != PCA9554_I2C_SUCCESS)
         return ret;
 
 
@@ -120,7 +120,7 @@ pca9554_return_t PCA9554::writeMultiplePorts(bool level, pca9554_mask_t mask) {
     pca9554_return_t ret;
 
     ret = readRegister(OUTPUT_REG, &outputReg);
-    if(ret != I2C_SUCCESS)
+    if(ret != PCA9554_I2C_SUCCESS)
         return ret;
 
     pca9554_data_t val = level?0xFF:0x00;

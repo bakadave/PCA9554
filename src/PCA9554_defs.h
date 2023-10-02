@@ -2,7 +2,7 @@
  * @file PCA9554_defs.h
  * @author David Baka
  * @brief
- * @version 0.1
+ * @version 0.3.1
  * @date 2023-10-02
  *  
  * @copyright Copyright (c) 2023 David Baka
@@ -13,11 +13,11 @@
 #define __PCA9554_DEFS__
 
 typedef enum : uint8_t{
-    I2C_SUCCESS = 0,
-    I2C_DATA_LONG,
-    I2C_ADDR_NACK,
-    I2C_DATA_NACK,
-    I2C_OTHER_ERR
+    PCA9554_I2C_SUCCESS = 0,
+    PCA9554_I2C_DATA_LONG,
+    PCA9554_I2C_ADDR_NACK,
+    PCA9554_I2C_DATA_NACK,
+    PCA9554_I2C_OTHER_ERR
 } pca9554_return_t;
 
 typedef enum : uint8_t{
