@@ -11,10 +11,9 @@
 
 #include <PCA9554.h>
 
-PCA9554::PCA9554(byte _slaveAddress, TwoWire *_wire, Stream *_serial) {
+PCA9554::PCA9554(byte _slaveAddress, TwoWire *_wire) {
 	slaveAddress = _slaveAddress;
     wire = _wire;
-    serial = _serial;
 }
 
 pca9554_return_t PCA9554::configSinglePort(bool mode, pca9554_port_num_t port) {
@@ -44,19 +43,6 @@ pca9554_return_t PCA9554::configMultiplePorts(bool mode, pca9554_mask_t mask) {
     pca9554_data_t val = mode?0xFF:0x00;   // fill a byte with the value of output mode
     configReg &= ~mask;            // clear bits covered by the mask
     configReg |= (val & mask);     // set bits covered by the mask
-
-
-    if(serial != NULL) {
-        //_serial->printf("configMultiplePorts - mode: %02X, val: %02X, mask: %02X\n", mode, val, mask);
-        serial->print("configMultiplePorts - mode: 0x");
-        serial->print(mode, HEX);
-        serial->print(", val: 0x");
-        serial->print(val, HEX);
-        serial->print(", mask: 0x");
-        serial->print(mask, HEX);
-        serial->print(", config register to be written: 0x");
-        serial->println(configReg, HEX);
-    }
 
     ret = writeRegister(CONFIG_REG, configReg);
 
@@ -123,15 +109,6 @@ pca9554_return_t PCA9554::writeSinglePort(bool level, pca9554_port_num_t port) {
 
     outputReg &= ~(1 << port);     // clear bit
     outputReg |= level << port;
-
-    if(serial != NULL) {
-        serial->print("writeSinglePort - level: 0x");
-        serial->print(level, HEX);
-        serial->print(", port: 0x");
-        serial->print(port, HEX);
-        serial->print(", output to be written: 0x");
-        serial->println(outputReg, HEX);
-    }
 
     ret = writeRegister(OUTPUT_REG, outputReg);
 

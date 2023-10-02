@@ -24,7 +24,7 @@ class PCA9554 {
          * @param slaveAddress I2C address of the expander
          * @param wire TwoWire instance for I2C bus
         */
-		PCA9554(byte _slaveAddress, TwoWire *_wire = &Wire, Stream *_serial = NULL);
+		PCA9554(byte _slaveAddress, TwoWire *_wire = &Wire);
 
         /**
          * @brief configure a single port for input/output
@@ -118,7 +118,6 @@ class PCA9554 {
         pca9554_return_t writeRegister(pca9554_reg_t reg, pca9554_data_t value);
 		int slaveAddress;
         TwoWire*  wire;
-        Stream* serial;
 };
 
 #endif
