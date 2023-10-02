@@ -1,6 +1,6 @@
 {
     "name": "PCA9554",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Arduino library for PCA9554 8 bit I2C expander",
     "keywords": "PCA9554",
     "repository":
