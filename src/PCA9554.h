@@ -74,7 +74,7 @@ class PCA9554 {
          * @param mask (optional) mask representing the ports to be read (0xFF for all ports - default)
          * @return success: 0, other: I2C error
         */
-        pca9554_return_t readInputs(pca9554_data_t* result, pca9554_mask_t mask = 0xFF);
+        pca9554_return_t readInputRegister(pca9554_data_t* result, pca9554_mask_t mask = 0xFF);
 
         /**
          * @brief write logic level to single port
@@ -93,6 +93,16 @@ class PCA9554 {
          * @return success: 0, other: I2C error
         */
         pca9554_return_t writeMultiplePorts(bool level, pca9554_mask_t mask = 0xFF);
+
+        /**
+         * @brief read commanded outputs
+         * @note this action has no effect on ports configured as inputs
+         * @note while read input register shows actual physical state of I/O, reading output register returns the commanded value on given port
+         * @param result pointer to variable that stores the result
+         * @param mask (optional) mask representing the ports to be written (0xFF for all ports - default)
+         * @return success: 0, other: I2C error
+        */
+        pca9554_return_t readOutputRegister(pca9554_data_t* result, pca9554_mask_t mask = 0xFF);
 
         /**
          * @brief sets the contents of the output register to 0

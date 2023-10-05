@@ -86,7 +86,7 @@ pca9554_return_t PCA9554::invertMultiplePorts(bool inverted, pca9554_mask_t mask
     return ret;
 }
 
-pca9554_return_t PCA9554::readInputs(pca9554_data_t* result, pca9554_mask_t mask) {
+pca9554_return_t PCA9554::readInputRegister(pca9554_data_t* result, pca9554_mask_t mask) {
     pca9554_data_t val;
     pca9554_return_t ret;
 
@@ -128,6 +128,18 @@ pca9554_return_t PCA9554::writeMultiplePorts(bool level, pca9554_mask_t mask) {
     outputReg |= (val & mask);
 
     ret = writeRegister(OUTPUT_REG, outputReg);
+
+    return ret;
+}
+
+pca9554_return_t PCA9554::readOutputRegister(pca9554_data_t* result, pca9554_mask_t mask) {
+    pca9554_data_t val;
+    pca9554_return_t ret;
+
+    ret = readRegister(OUTPUT_REG, &val);
+
+    val &= mask;
+    *result = val;
 
     return ret;
 }
