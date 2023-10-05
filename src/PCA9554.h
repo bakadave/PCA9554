@@ -2,7 +2,7 @@
  * @file PCA9554.h
  * @author David Baka
  * @brief
- * @version 0.3
+ * @version 0.3.2
  * @date 2023-10-02
  *  
  * @copyright Copyright (c) 2023 David Baka
